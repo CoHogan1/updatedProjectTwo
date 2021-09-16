@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head> <%- include ('./partials/head.ejs') %> </head>
+    <body class="indexBody">
+    <nav>  <%- include('./partials/nav.ejs') %>   </nav>
+
+    <table class="indexTable">
+        <th><td class="tableTitle">All Methods</td>
+        </th>
+        <tr>
+            <th>      </th>
+            <th>Name: </th>
+            <th>      </th>
+            <th>Did It Work?</th>
+            <th>My Rating </th>
+            <th>Results: </th>
+            <th>Personal notes: </th>
+        </tr>
+        <tr>
+        <%for (let i = 0; i < practices.length; i++) { %>
+            <td><button type="button" name="button"
+                onclick="window.location.href='/home/index/<%=practices[i].id%>/edit'"
+                >Edit</button></td>
+
+            <td id="name"><a href="/home/index/<%=practices[i].id%>/show"><%=practices[i].name%></a></td>
+
+            <td>
+                <form action="/home/index/<%=practices[i].id%>?_method=DELETE" method="POST">
+                    <button id="delete">Remove</button>
+                </form>
+            </td>
+            <td><%=practices[i].didItWork%></td>
+            <td><%=practices[i].myRating%></td>
+            <td><%=practices[i].results%></td>
+            <td><%=practices[i].notes%></td>
+        </tr>
+        <%}%>
+    </table>
+
+        <button class="indexButton" type="button" onclick="window.location.href='/home/index/new'">Add A New System</button>
+
+    </body>
+</html>

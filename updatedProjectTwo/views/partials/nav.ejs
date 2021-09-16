@@ -1,0 +1,22 @@
+<a href="/home" >HOME</a>
+<a href="/home/index" > All Methods</a>
+<a href="/home/index/new">Create a new method</a>
+<button type="button" name="button">Dark mode</button>
+
+<ul class="right">
+    <% if (currentUser) { %>
+    <li style="padding-right:15px;">Welcome
+         <%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1)%>
+    </li>
+
+    <li>
+        <form action="/sessions?_method=DELETE" method="POST">
+        <button class="navUsers" id="logout">Log out</button>
+        </form>
+    </li>
+
+    <% } else { %>
+        <li> <a href="/sessions/new">Log In </a> </li>
+        <li> <a href="/users/new">Sign Up   </a> </li>
+    <% } %>
+</ul>

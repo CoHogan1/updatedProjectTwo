@@ -1,0 +1,25 @@
+<header>  <%- include('../partials/head.ejs') %> </header>
+
+<body class="userBody">
+<nav>  <%- include('../partials/nav.ejs') %> </nav>
+
+    <form action="/users" method="POST" class="userForm">
+
+        <h4>New User Page</h4>
+
+        <label>
+            <span>Username:</span>
+            <input type="text" name="username" />
+        </label> <br><br>
+
+        <label>
+            <span>Password:</span>
+            <input type="password" name="password" />
+        </label>
+
+        <input class="userSubmit" type="submit" value="Create User" />
+
+    </form>
+
+<footer> <%- include('../partials/footer.ejs') %> </footer>
+</body>

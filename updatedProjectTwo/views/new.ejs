@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include ('./partials/head.ejs') %>
+    </head>
+    <body class="newBody">
+        <nav>
+            <%- include('./partials/nav.ejs') %>
+        </nav>
+
+        <form class="newForm" action="/home/index" method="POST">
+        <h1>New System</h1>
+
+            <span>Name:</span><input type="text" name="name" value=""><br>
+            <span>Did it work?</span><input type="checkbox" name="didItWork"><br>
+
+            <span>My Rating:</span><input type="number" name="myRating" min="0" max="5" value=""><br>
+
+            <span>Results:</span><input type="text" name="results" value=""><br>
+            <span>Notes:</span><input type="text" name="notes" value=""><br>
+
+            <input class="addSubmit" type="submit" name="" value="Add New System">
+        </form>
+    </body>
+</html>

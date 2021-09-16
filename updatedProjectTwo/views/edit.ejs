@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <%- include ('./partials/head.ejs') %>
+</head>
+<body class="editBody">
+    <nav>
+        <%- include('./partials/nav.ejs') %>
+    </nav>
+
+    <form class="editForm" method="POST" action="/home/index/<%=practices.id%>?_method=PUT">
+        <h1 class="editH1">Adjust-- <%=practices.name%> </h1>
+        <label for="">Name:</label>
+        <input type="text" name="name" value="<%= practices.name%>"> <br>
+
+        <label for="">Did It work?: Check for yes!</label>
+        <input type="checkbox" name="didItWork"
+            <% if (practices.didItWork) { %>
+                checked
+            <%}%>
+        /><br>
+
+        <label for="">My Rating</label>
+        <input type="number" name="myRating" min='0' max='5' value="<%= practices.myRating%>"><br>
+
+        <label for="">Results:</label>
+        <input class="editResults" type="text" name="results" value="<%= practices.results%>"><br>
+
+        <label for="">Personal Notes:</label>
+        <input class="editNotes" type="text" name="notes" value="<%= practices.notes%>"><br><br>
+
+        <input class="editSubmit" type="submit" name="" value="Update <%=practices.name%>"/>
+    </form>
+
+</body>
+</html>
