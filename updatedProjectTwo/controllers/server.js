@@ -3,25 +3,6 @@ const router = express.Router()
 
 const Attempt = require('../models/schema.js')
 
-
-
-// controllers -----------------------------------------------------------------
-// router.get('/', (req, res)=>{
-//     console.log('Running')
-//     // Attempt.create(req.body, (err, genesis)=>{
-//     //     if (err) {
-//     //         console.log(err)
-//     //     } else {
-//     //         console.log(genesis)
-//     //         res.redirect('/home/')
-//     //     }
-//     //})
-//     res.redirect()
-// })
-
-//-----show---------------------------------------------------------------------
-
-
 router.post('/index', (req, res)=>{
     if (req.body.didItWork === "on"){
         req.body.didItWork = true;
@@ -46,8 +27,6 @@ router.get('/index/new', (req, res)=>{
 
 router.get('/index/:id', (req, res)=>{
     Attempt.findById(req.params.id, (err, system)=>{
-        //console.log(system)
-        //res.send("This is working")
         res.render('show.ejs', { practices: system})
     })
 })
@@ -57,7 +36,6 @@ router.get('/index', (req, res)=>{
         if (err) {
             console.log(err)
         } else {
-            //console.log(data)
             res.render('index.ejs',
             { practices:data, currentUser:req.session.currentUser})
         }

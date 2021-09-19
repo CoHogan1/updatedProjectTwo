@@ -5,8 +5,10 @@
 <nav>  <%- include('../partials/nav.ejs') %>  </nav>
 
     <form class="loginForm" action="/sessions" method="POST">
-        <h4>Login Page</h4>
 
+        <% include('../partials/messages.ejs') %>
+
+        <h4>Login Page</h4>
         <label>
             <span>Username:</span>
             <input type="text" name="username" />
