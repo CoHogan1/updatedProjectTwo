@@ -5,11 +5,24 @@
     color: cyan;
 }
 body{
-    background-color: black;
+    background-image: url('sweet.jpg');
+    background-size: cover;
+}
+
+.home>div {
+    background-image: linear-gradient(45deg, cyan 4%, black 10%, black 85%, cyan 95%);
+    opacity: 0.8;
+    width: 75%;
+    font-size: 2em;
+    color: white;
+    padding: 30px;
+    margin-top: 50px;
+
 }
 
 nav {
     background-image: linear-gradient(45deg, cyan 4%, black 10%, black 85%, cyan 95%);
+    opacity: 0.8;
     font-weight: normal;
     display: flex;
     font-size: 1.5em;
@@ -179,4 +192,19 @@ button:hover{
 .sub2:hover{
     background-color: cyan;
     transition: 0.4s ease;
+}
+
+
+.foot {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(85,85,85, 0.8);
+    border-radius: 10px, 10px, 0 ,0;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+.foot>p {
+    margin-top: 3px;
 }
