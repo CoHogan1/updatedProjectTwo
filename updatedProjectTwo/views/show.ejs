@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <%- include ('./partials/head.ejs') %>
-    </head>
-    <body class="showBody">
-        <nav>
-            <%- include('./partials/nav.ejs') %>
-        </nav>
+<head> <%- include ('./partials/head.ejs') %> </head>
+<body>
+<nav> <%- include('./partials/nav.ejs') %> </nav>
 
-        <div class="showForm">
+    <div class="show">
 
 
 
-        <h1> <%= practices.name%>        </h1>
-        <h3>Did it work for me? <u><%= practices.didItWork%></u></h3>
-        <h3>My Rating: <%= practices.myRating%> out of 5</h3>
-        <h3>My Results: <%= practices.results%></h3>
-        <h3>My Notes: <%= practices.notes%></h3>
+    <h1> <%= practices.name%>        </h1>
+    <h3>Did it work for me? <u><%= practices.didItWork%></u></h3>
+    <h3>My Rating: <%= practices.myRating%> out of 5</h3>
+    <h3>My Results: <%= practices.results%></h3>
+    <h3>My Notes: <%= practices.notes%></h3>
 
-        <button type="button" class="showButton"
-        onclick='window.location.href="/home/index/<%=practices.id%>/edit"'>
-        Edit <%= practices.name%></button>
+    <button type="button" class="sub"
+    onclick='window.location.href="/home/index/<%=practices.id%>/edit"'>
+    Edit <%= practices.name%></button>
     </div>
 
 
-    </body>
+</body>
 </html>

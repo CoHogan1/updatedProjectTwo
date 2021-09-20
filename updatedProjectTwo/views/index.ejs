@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head> <%- include ('./partials/head.ejs') %> </head>
-    <body class="indexBody">
+    <body>
     <nav>  <%- include('./partials/nav.ejs') %>   </nav>
 
     <table class="indexTable">
-        <th><td class="tableTitle">All Methods</td>
-        </th>
-        <tr>
+        <th class="title">All Methods</th>
+        <tr class="headder">
             <th>      </th>
             <th>Name: </th>
             <th>      </th>
@@ -25,7 +24,7 @@
             <td id="name"><a href="/home/index/<%=practices[i].id%>/show"><%=practices[i].name%></a></td>
 
             <td>
-                <form action="/home/index/<%=practices[i].id%>?_method=DELETE" method="POST">
+                <form class="tableForm" action="/home/index/<%=practices[i].id%>?_method=DELETE" method="POST">
                     <button id="delete">Remove</button>
                 </form>
             </td>
@@ -37,7 +36,7 @@
         <%}%>
     </table>
 
-        <button class="indexButton" type="button" onclick="window.location.href='/home/index/new'">Add A New System</button>
+    <button class="sub" type="button" onclick="window.location.href='/home/index/new'">Add A New System</button>
 
     </body>
 </html>

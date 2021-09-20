@@ -4,24 +4,29 @@
 
 <nav>  <%- include('../partials/nav.ejs') %>  </nav>
 
-    <form class="loginForm" action="/sessions" method="POST">
 
-        <% include('../partials/messages.ejs') %>
+<form class="loginForm" action="/sessions" method="POST">
+    <h2>Login Page</h2>
 
-        <h4>Login Page</h4>
-        <label>
-            <span>Username:</span>
-            <input type="text" name="username" />
-        </label><br><br>
+    <div>
+    <label>Username:</label>
+    <input type="text" name="username" />
+    </div>
 
-        <label>
-            <span>Password:</span>
-            <input type="password" name="password" />
-        </label>
-        <br>
-        <br>
-        <input class="loginSubmit" type="submit" value="Login" />
-    </form>
+    <div>
+    <label>Password:</label>
+    <input type="password" name="password" />
+    </div>
+
+
+    <input class="sub" type="submit" value="Login" /><br><br>
+</form>
+
+<form  action="/sessions" method="POST">
+    <input class="hide" type="text" name="username" value="Recruiter"/>
+    <input class="hide" type="text" name="password" value="password"/>
+    <input class="sub2" type="submit" value="Recruiter Login" />
+</form>
 
 
 <%- include('../partials/footer.ejs') %>

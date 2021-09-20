@@ -2,24 +2,26 @@
 
 <body class="userBody">
 <nav>  <%- include('../partials/nav.ejs') %> </nav>
-
     <form action="/users" method="POST" class="userForm">
+    <h2>New User Page</h2>
 
-        <h4>New User Page</h4>
+    <div>
+    <label>Username:</label>
+    <input type="text" name="username" />
+    </div>
 
-        <label>
-            <span>Username:</span>
-            <input type="text" name="username" />
-        </label> <br><br>
+    <div>
+    <label>Password:</label>
+    <input type="password" name="password" />
+    </div>
 
-        <label>
-            <span>Password:</span>
-            <input type="password" name="password" />
-        </label>
+    <input class="sub" type="submit" value="Create User" /> <br><br>
+    </form>
 
-        <input class="userSubmit" type="submit" value="Create User" />
-        <a href="/users/new"> This</a>
-
+    <form   action="/sessions" method="POST">
+        <input class="hide" type="text" name="username" value="Recruiter"/>
+        <input class="hide" type="text" name="username" value="password"/>
+        <input class="sub2" type="submit" value="Recruiter Login" />
     </form>
 
 <footer> <%- include('../partials/footer.ejs') %> </footer>

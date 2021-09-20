@@ -1,16 +1,13 @@
-// whatever I want to call my app
-
-const express = require('express')
 require('dotenv').config()
-const PORT = process.env.PORT
+const express = require('express')
 const app = express()
+const PORT = process.env.PORT
 
 const session = require('express-session')
 
 const systemControllers = require('./controllers/server.js')
 const Attempt = require('./models/schema.js')
-const Client = require('./models/users.js')
-
+const Client  = require('./models/users.js')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -19,20 +16,17 @@ app.use(express.static('public'))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
-
-
 const mongoose = require('mongoose')
-const information = require('./models/databseInfo.js') // lol databse.
-const usersList =   require('./models/usersList.js') // users able to log in.
+const information = require('./models/databseInfo.js')
+const usersList =   require('./models/usersList.js')
 const mongoURI = process.env.MONGODBURI
 const db = mongoose.connection
 
-mongoose.connect(mongoURI , { // start connection to db
+mongoose.connect(mongoURI , {
     //useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-},()=>{
-    console.log("Mongo connection is  established.")
+},()=>{console.log("Mongo connection is  established.")
 })
 
 // connection error handeling.
@@ -42,30 +36,23 @@ db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good d
 
 app.use(session({
     secret: process.env.SECRET,
-    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+    resave: false,
+    saveUninitialized: false
 }))
 
-
-// middleware to ensure user is logged in. // need to have users before hand...
-const isAuthenticated = (req, res, next) => { // comment out to set up a new user.
-    console.log('log-in dummy..... :)')
+const isAuthenticated = (req, res, next) => {
     if (req.session.currentUser) {
-        // console.log(req.session.currentUser)
         return next()
     } else {
-        // console.log(req.sessions.currentUser)
         res.redirect('/sessions/new')
     }
 }
 
 const homeControllers = require('./controllers/server')
-app.use('/home', isAuthenticated,  homeControllers) // use once user is set up
-//app.use('/home', homeControllers) // make new user
+app.use('/home', isAuthenticated,  homeControllers)
 
 const usersControllers = require('./controllers/users')
-//app.use('/users', isAuthenticated,  usersControllers) // use once user is set up
-app.use('/users', usersControllers) // make new user
+app.use('/users', usersControllers)
 
 const sessionsControllers = require('./controllers/sessions')
 app.use('/sessions', sessionsControllers)
@@ -79,9 +66,6 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
     res.render('home.ejs', {currentUser: req.session.currentUser})
 })
-
-
-
 
 app.listen(PORT, (req, res)=>{
     console.log('Project 2 App is listening.', PORT)

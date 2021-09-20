@@ -21,7 +21,6 @@ router.post('/index', (req, res)=>{
 })
 
 router.get('/index/new', (req, res)=>{
-    console.log('**new route**')
     res.render('new.ejs', {currentUser: req.session.currentUser})
 })
 
@@ -42,23 +41,6 @@ router.get('/index', (req, res)=>{
     })
 })
 
-router.put('/index', (req, res)=>{
-    console.log('pposting to home/index route')
-    if (req.body.didItWork === 'on') {
-        req.body.didItWork = true
-    } else {
-        req.body.didItWork = false
-    }
-    Attempt.create(req.body, (err, genesis) => { // probably dont need this create.
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(genesis + " this is the req.body")
-            res.redirect('/home/index')
-        }
-    })
-})
-
 // delete-----------------------------------------------------------------------
 
 router.delete('/index/:id', (req, res)=>{
@@ -73,7 +55,7 @@ router.delete('/index/:id', (req, res)=>{
         }
     })
 })
-
+// show ------------------------------------------------------------------------
 router.get('/index/:id/show', (req, res)=>{
     console.log(req.params.id)
     Attempt.findById(req.params.id, (err, program)=>{
@@ -81,7 +63,6 @@ router.get('/index/:id/show', (req, res)=>{
             console.log(err + ' error')
             console.log(program + ' program')
         } else {
-            //res.send(program)
             res.render('show.ejs', {
                 practices: program,
                 currentUser: req.session.currentUser
@@ -92,7 +73,7 @@ router.get('/index/:id/show', (req, res)=>{
 
 // edit route----1 0f 2---------------------------------------------------------
 router.get('/index/:id/edit', (req, res)=>{
-    console.log(req.params.id)
+    //console.log(req.params.id)
     Attempt.findById(req.params.id, (err, program)=>{
         if (err) {
             console.log(err + ' error')

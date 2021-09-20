@@ -1,13 +1,11 @@
 const express = require('express')
 const router = express.Router()
-
-const User = require('../models/users')
 const bcrypt = require('bcrypt')
+const User = require('../models/users')
 
 
 // USER NEW ROUTE
 router.get('/new', (req, res)=>{
-    console.log('users.new route');
     res.render('users/new.ejs', { currentUser: req.session.currentUser})
 })
 
@@ -20,7 +18,7 @@ router.post('/', (req, res)=>{
 
     User.create(req.body, (err, createdUser)=>{
         if  (err){
-            if (err.code===11000){
+            if (err.code === 11000){
                 res.send('User already exist!!!')
             }
             else{

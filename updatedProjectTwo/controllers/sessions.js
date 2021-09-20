@@ -10,26 +10,22 @@ router.get('/new', (req, res) => {
 
 // USER LOGIN ROUTE (CREATE SESSION ROUTE)
 router.post('/', (req, res) => {
-    console.log(req.body.username, req.body.password + " name and password")
     User.findOne({ username: req.body.username}, (err, foundUser) => {
-        //console.log(foundUser + " this is the found user...");
         if (err) {
-                res.send(err)
+            res.send(err)
         }
         else {
             if (foundUser){
-                if (bcrypt.compareSync(req.body.password, foundUser.password)){ // this is the error
-                    //login user and create session
+                if (bcrypt.compareSync(req.body.password, foundUser.password)){
                     req.session.currentUser = foundUser
-                    res.redirect('/home/index') // this may need to be just index
+                    res.redirect('/home/index')
                 }
                 else{
-                    //console.log(req.body.password, foundUser.password + " name password");
-                    res.send("<h1>invalid password")
+                    res.send("invalid password")
                 }
             }
             else{
-                res.send("<h1>user not found</h1>")
+                res.send("user not found")
             }
         }
     })
