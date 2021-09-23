@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT
 
-const session = require('express-sessions')
+const sess = require('express-sessions')
 
 const systemControllers = require('./controllers/server.js')
 const Attempt = require('./models/schema.js')
@@ -35,10 +35,10 @@ db.on('error', (err)=> console.log(err.message + ' Mongo is not running!!!'))
 db.on('connected', ()=> console.log('Mongo connected: '))
 db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good day!'))
 
-app.use(session({
+app.use(sess({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }))
 
 const isAuthenticated = (req, res, next) => {
@@ -48,6 +48,7 @@ const isAuthenticated = (req, res, next) => {
         res.redirect('/sessions/new')
     }
 }
+
 
 const homeControllers = require('./controllers/server')
 app.use('/home', isAuthenticated,  homeControllers)
@@ -61,7 +62,7 @@ app.use('/sessions', sessionsControllers)
 
 // HOMEPAGE Route
 app.get('/', (req, res) => {
-    res.redirect('/home')//render('home.ejs', {currentUser: req.session.currentUser})
+    res.render('home.ejs', {currentUser: req.session.currentUser})
 })
 
 app.get('/home', (req, res) => {
