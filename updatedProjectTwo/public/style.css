@@ -208,3 +208,15 @@ button:hover{
 .foot>p {
     margin-top: 3px;
 }
+
+.clip {
+    position: static;
+    max-width: 25px;
+    max-height: 25px;
+
+    margin-left: 10px;
+}
+
+.clip:active {
+    border:2px solid red;
+}

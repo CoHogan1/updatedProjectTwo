@@ -32,7 +32,7 @@ mongoose.connect(mongoURI , {
 
 // connection error handeling.
 db.on('error', (err)=> console.log(err.message + ' Mongo is not running!!!'))
-db.on('connected', ()=> console.log('Mongo connected: ' + mongoURI))
+db.on('connected', ()=> console.log('Mongo connected: '))
 db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good day!'))
 
 app.use(session({

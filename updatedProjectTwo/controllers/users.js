@@ -19,10 +19,10 @@ router.post('/', (req, res)=>{
     User.create(req.body, (err, createdUser)=>{
         if  (err){
             if (err.code === 11000){
-                res.send('User already exist!!!')
+                res.redirect('sessions/new')
             }
             else{
-                res.send(err)
+                res.redirect('sessions/new')
             }
         }
         else{

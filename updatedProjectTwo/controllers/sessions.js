@@ -21,11 +21,11 @@ router.post('/', (req, res) => {
                     res.redirect('/home/index')
                 }
                 else{
-                    res.send("invalid password")
+                    res.redirect('/sessions/new')
                 }
             }
             else{
-                res.send("user not found")
+                res.redirect('/sessions/new')
             }
         }
     })
