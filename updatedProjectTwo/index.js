@@ -1,9 +1,9 @@
-require('dotenv').config()
 const express = require('express')
+require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT
 
-const sess = require('express-sessions')
+const session = require('express-session')
 
 const systemControllers = require('./controllers/server.js')
 const Attempt = require('./models/schema.js')
@@ -18,10 +18,13 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 const mongoose = require('mongoose')
-const information = require('./models/databseInfo.js')
-const usersList =   require('./models/usersList.js')
 const mongoURI = process.env.MONGODBURI
 const db = mongoose.connection
+
+// connection error handeling.
+db.on('error', (err)=> console.log(err.message + ' Mongo is not running!!!'))
+db.on('connected', ()=> console.log('Mongo connected: '))
+db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good day!'))
 
 mongoose.connect(mongoURI , {
     //useFindAndModify: false,
@@ -30,15 +33,10 @@ mongoose.connect(mongoURI , {
 },()=>{console.log("Mongo connection is  established.")
 })
 
-// connection error handeling.
-db.on('error', (err)=> console.log(err.message + ' Mongo is not running!!!'))
-db.on('connected', ()=> console.log('Mongo connected: '))
-db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good day!'))
-
-app.use(sess({
+app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false
 }))
 
 const isAuthenticated = (req, res, next) => {
@@ -52,6 +50,7 @@ const isAuthenticated = (req, res, next) => {
 
 const homeControllers = require('./controllers/server')
 app.use('/home', isAuthenticated,  homeControllers)
+//app.use('/home', homeControllers)
 
 const usersControllers = require('./controllers/users')
 app.use('/users', usersControllers)
@@ -62,7 +61,7 @@ app.use('/sessions', sessionsControllers)
 
 // HOMEPAGE Route
 app.get('/', (req, res) => {
-    res.render('home.ejs', {currentUser: req.session.currentUser})
+    res.redirect('/home')
 })
 
 app.get('/home', (req, res) => {
