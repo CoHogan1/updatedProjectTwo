@@ -211,12 +211,15 @@ button:hover{
 .foot>p {
     margin-top: 3px;
 }
+.feet {
+    display: flex;
+    flex-direction: row;
+}
 
 .clip {
     position: static;
     max-width: 25px;
     max-height: 25px;
-
     margin-left: 10px;
 }
 
